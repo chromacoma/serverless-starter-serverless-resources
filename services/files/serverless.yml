@@ -1,0 +1,46 @@
+service: __PACKAGE_NAME__-files
+
+custom:
+  # Our stage is based on what is passed in when running serverless
+  # commands. Or fallsback to what we have set in the provider section.
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  stage: dev
+  region: __AWS_REGION__
+
+resources:
+  Resources:
+    __FILES_BUCKET_NAME__:
+      Type: AWS::S3::Bucket
+      Properties:
+        # Set the CORS policy
+        CorsConfiguration:
+          CorsRules:
+            - AllowedOrigins:
+                - '*'
+              AllowedHeaders:
+                - '*'
+              AllowedMethods:
+                - GET
+                - PUT
+                - POST
+                - DELETE
+                - HEAD
+              MaxAge: 3000
+
+  # Print out the name of the bucket that is created
+  Outputs:
+    __FILES_BUCKET_NAME__Arn:
+      Value:
+        Fn::GetAtt:
+          - __FILES_BUCKET_NAME__
+          - Arn
+      Export:
+        Name: ${self:custom.stage}-__FILES_BUCKET_NAME__Arn
+    __FILES_BUCKET_NAME__Name:
+      Value:
+        Ref: __FILES_BUCKET_NAME__
+      Export:
+        Name: ${self:custom.stage}-__FILES_BUCKET_NAME__
