@@ -38,9 +38,9 @@ resources:
           - __FILES_BUCKET_NAME__
           - Arn
       Export:
-        Name: ${self:custom.stage}-__FILES_BUCKET_NAME__Arn
+        Name: ${self:custom.stage}-__FILES_BUCKET_NAME__BucketArn
     __FILES_BUCKET_NAME__Name:
       Value:
         Ref: __FILES_BUCKET_NAME__
       Export:
-        Name: ${self:custom.stage}-__FILES_BUCKET_NAME__
+        Name: ${self:custom.stage}-__FILES_BUCKET_NAME__Bucket

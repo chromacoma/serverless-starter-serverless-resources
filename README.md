@@ -22,6 +22,7 @@ Replace the following constants:
 
 ```bash
 __PACKAGE_NAME__
+__AWS_REGION__
 __USERS_TABLE_NAME__
 __FILES_BUCKET_NAME__
 ```
