@@ -79,17 +79,17 @@ resources:
           Enabled: true
 
   Outputs:
-    __USERS_TABLE_NAME__TableArn:
+    UsersTableArn:
       Value:
         Fn::GetAtt:
           - __USERS_TABLE_NAME__Table
           - Arn
       Export:
-        Name: ${self:custom.stage}-__USERS_TABLE_NAME__TableArn
+        Name: UsersTableArn-${self:custom.stage}
     SocketConnectionsTableArn:
       Value:
         Fn::GetAtt:
           - SocketConnectionsTable
           - Arn
       Export:
-        Name: ${self:custom.stage}-SocketConnectionsTableArn
+        Name: SocketConnectionsTableArn-${self:custom.stage}
